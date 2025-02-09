@@ -2,19 +2,15 @@
 {
 "name":"Alpine",
 "args":"",
-"url":{"arm64":{
-  "ssh":"https://github.com/Kaboom-18/Kaboot/raw/refs/heads/main/rootfs/Alpine/arm64/SSH/alpine.tar.gz"
-}
-}
+"url":{"arm64":{"ssh":"https://github.com/Kaboom-18/Kaboot/raw/refs/heads/main/rootfs/Alpine/arm64/SSH/alpine.tar.gz"}}
 },
 {
 "name":"Debian",
 "args":"",
-"url":{"arm64":{"ssh":""}
+"url":{"arm64":{"ssh":""}}
 },
 {
 "name":"Ubuntu",
 "args":"",
-"url":{"arm64":{"ssh":""}
-}
+"url":{"arm64":{"ssh":""}}}
   ]
