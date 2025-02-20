@@ -1,7 +1,7 @@
 [
    {
       "name":"Alpine",
-      "args":"-l -0 -w / -b /dev -b /proc -b /sys /bin/sh /.kaboot/start",
+      "args":"-l -0 -w / -b /dev -b /proc -b /sys /.kaboot/start",
       "url":{
          "arm64":{
             "ssh":"https://github.com/Kaboom-18/Kaboot/raw/refs/heads/main/rootfs/Alpine/arm64/SSH/alpine.tar.gz"
