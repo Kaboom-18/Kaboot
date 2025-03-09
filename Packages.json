@@ -11,7 +11,7 @@
       "name":"Debian Term",
       "args":"-l -0 -w /root -b /dev -b /proc -b /sys /usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games HOME=/root /bin/bash --login",
       "url":{
-         "arm64":"https://github.com/EXALAB/Anlinux-Resources/raw/refs/heads/master/Rootfs/Debian/arm64/debian-rootfs-arm64.tar.xz"
+         "arm64":""
       },
       "type":"term"
    },
