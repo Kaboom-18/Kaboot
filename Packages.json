@@ -11,7 +11,7 @@
       "name":"Debian Term",
       "args":"-l -0 -w /root -b /dev -b /proc -b /sys /usr/bin/env -i PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games HOME=/root /bin/bash --login",
       "url":{
-         "arm64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/debian.tar.xz"
+         "arm64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/debian.tar.gz"
       },
       "type":"term"
    },
