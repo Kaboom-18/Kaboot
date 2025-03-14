@@ -5,6 +5,7 @@
       "url":{
          "arm64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
       },
+      "icon":"https://github.com/Kaboom-18/Kaboot/blob/main/icons/linux.png"
       "type":"term"
    }
       ]
