@@ -3,7 +3,7 @@
       "name":"Alpine Term",
       "args":"-l -0 -w /root -b /dev -b /proc -b /sys /usr/bin/env -i PATH=/bin:/usr/bin:/sbin:/usr/sbin HOME=/root LANG=C.UTF-8 TERM=xterm-256color /bin/sh --login",
       "url":{
-         "arm64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
+         "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
       },
       "icon":"https://github.com/Kaboom-18/Kaboot/blob/main/icons/linux.png",
       "type":"term"
