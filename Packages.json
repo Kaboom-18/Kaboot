@@ -8,7 +8,7 @@
       }
    },
    {
-      "name":"gui text debug",
+      "name":"gui test debug",
       "args":"-l -0 -w /root -b /dev -b /proc -b /sys /bin/httpd -f -h /root -p $PORT",
       "type": "gui",
       "url":{
