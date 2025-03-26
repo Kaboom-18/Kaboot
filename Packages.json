@@ -9,7 +9,7 @@
    },
    {
       "name":"gui test debug",
-      "args":"-l -0 -w /root -b /dev -b /proc -b /sys /usr/sbin/httpd -f -h /root -p $PORT",
+      "args":"-l -0 -w /root -b /dev -b /proc -b /sys /usr/sbin/httpd -f -h /root -p 127.0.0.1:$PORT",
       "type": "term",
       "url":{
          "aarch64":"https://github.com/Kaboom-18/Kaboot/raw/refs/heads/main/test.tar.gz"
