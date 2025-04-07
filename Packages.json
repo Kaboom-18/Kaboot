@@ -4,11 +4,5 @@
       "url":{
          "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
       }
-   },
-   {
-      "name":"Zphisher",
-      "url":{
-         "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/zphisher.tar.gz"
-      }
    }
       ]
