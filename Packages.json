@@ -8,7 +8,7 @@
    {
       "name":"Debian",
       "url":{
-         "aarch64":""
+         "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/debian.tar.gz"
       }
    }
       ]
