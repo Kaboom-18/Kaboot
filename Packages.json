@@ -3,12 +3,14 @@
       "name":"Alpine",
       "url":{
          "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
-      },
+      }
+   },
          {
       "name":"Debian",
       "url":{
          "aarch64":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/debian.tar.gz"
-      },
+      }
+         },
          {
       "name":"Ubuntu",
       "url":{
