@@ -1,18 +1,21 @@
 [
    {
       "name":"Alpine",
+      "description":"Alpine Linux is a small, security-oriented, lightweight Linux distribution based on the musl C standard library and BusyBox utilities instead of GNU."
       "url":{
          "arm64-v8a":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/alpine.tar.gz"
       }
    },
          {
       "name":"Debian",
+      "description":"Debian is a free and open-source Linux distribution, known for its stability, wide software selection, and community-driven development."
       "url":{
          "arm64-v8a":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/debian.tar.gz"
       }
          },
             {
       "name":"Ubuntu",
+      "description":"Ubuntu is a free, open-source Linux operating system, known for its user-friendly interface and wide range of applications."
       "url":{
          "arm64-v8a":"https://github.com/Kaboom-18/Kaboot/releases/download/rootfs/ubuntu.tar.gz"
       }
