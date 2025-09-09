@@ -91,9 +91,9 @@ public class PkgService extends Service implements TerminalSession.SessionChange
 
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
-    if(intent != null && "ACTION_TERMINATE".equals(intent.getAction())){
-        killSessions();
-        return START_NOT_STICKY;
+    if (intent != null && "ACTION_TERMINATE".equals(intent.getAction())) {
+      killSessions();
+      return START_NOT_STICKY;
     }
     createNotificationChannel();
     startForeground(1, createNotification(intent));
@@ -115,7 +115,7 @@ public class PkgService extends Service implements TerminalSession.SessionChange
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       NotificationChannel serviceChannel =
           new NotificationChannel(
-              CHANNEL_ID, "Package Service Channel", NotificationManager.IMPORTANCE_LOW);
+              CHANNEL_ID, "Package Service Channel", NotificationManager.IMPORTANCE_DEFAULT);
       NotificationManager manager = getSystemService(NotificationManager.class);
       if (manager != null) {
         manager.createNotificationChannel(serviceChannel);
@@ -135,16 +135,17 @@ public class PkgService extends Service implements TerminalSession.SessionChange
     PendingIntent bodyIntent =
         PendingIntent.getActivity(
             this, 0, body, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-        
-        Intent terminate = new Intent(this, PkgService.class);
+
+    Intent terminate = new Intent(this, PkgService.class);
     terminate.setAction("ACTION_TERMINATE");
     PendingIntent terminateIntent =
         PendingIntent.getService(
             this, 1, terminate, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
-            
+
     return new NotificationCompat.Builder(this, CHANNEL_ID)
+        .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
         .setContentTitle("Package Active")
-        .setContentText(Config.getPkgName(intent.getStringExtra("pkgPath"))+" is running.!")
+        .setContentText(Config.getPkgName(intent.getStringExtra("pkgPath")) + " is running.!")
         .setSmallIcon(R.drawable.ic_terminal)
         .addAction(R.drawable.ic_terminate, "Terminate", terminateIntent)
         .setContentIntent(bodyIntent)
@@ -200,7 +201,7 @@ public class PkgService extends Service implements TerminalSession.SessionChange
 
   @Override
   public void onBell(TerminalSession session) {
-      if (callback != null) {
+    if (callback != null) {
       callback.onBell(session);
     }
   }

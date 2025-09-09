@@ -36,7 +36,7 @@ public class KabUtil {
   }
 
   public void toast(String msg) {
-    Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    Config.UI.post(()->Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
   }
 
   public String fetch(String urlString) {
@@ -89,6 +89,10 @@ public class KabUtil {
     File file = new File(path);
     return file.renameTo(new File(file.getParent(), name));
   }
+    
+  public boolean renameFolder(String p1, String p2){
+      return new File(p1).renameTo(new File(p2));
+    }  
 
   private boolean createNewFile(String path) {
     try {

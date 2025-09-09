@@ -84,7 +84,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     } else {
       holder.icon.setVisibility(View.GONE);
       invalidPkg = true;
-      holder.name.setText(String.format("Invalid Package (%s)!", packageName));
+      holder.name.setText("invalid package!");
     }
 
     if (packagePath.equals(PkgService.active)) {

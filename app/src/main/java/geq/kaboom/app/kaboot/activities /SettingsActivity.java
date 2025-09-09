@@ -25,6 +25,7 @@ import geq.kaboom.app.kaboot.misc.SettingItem;
 import geq.kaboom.app.kaboot.adapters.SettingsAdapter;
 import geq.kaboom.app.kaboot.R;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -122,11 +123,20 @@ public class SettingsActivity extends AppCompatActivity {
         new SettingItem(
             "Clear Temp",
             "Clears application temporary files and package tmp directories.",
-            (t, d) ->
-                util.toast(
-                    util.deleteFile(Config.getTmpDir(this))
+            (t, d) -> {
+                boolean result = true;
+                File file = new File(getFilesDir(), "Packages");
+                for (File f : file.listFiles()){
+                    if(f.isHidden()){
+                    result = result && util.deleteFile(f.getAbsolutePath());
+                    }
+                }
+                    result = result && util.deleteFile(Config.getTmpDir(this));
+                    
+                    util.toast(result
                         ? "Cache cleared!"
-                        : "Failed to clear tmp!")));
+                        : "Failed to clear tmp!");
+                }));
 
     settings.add(
         new SettingItem(
@@ -254,7 +264,7 @@ public class SettingsActivity extends AppCompatActivity {
               boolean newState = !config.getBoolean(key, defaultValue);
               configEditor.putBoolean(key, newState).apply();
               t.setText(label + ": " + (newState ? "Enabled" : "Disabled"));
-              util.toast(label + (newState ? " Enabled" : " Disabled"));
+              util.toast(label + (newState ? " Enabled" : " Disabled")+"!");
             }));
   }
 

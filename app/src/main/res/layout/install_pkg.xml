@@ -8,17 +8,11 @@
     android:layout_marginBottom="@dimen/_4sdp"
     android:layout_marginLeft="@dimen/_5sdp"
     android:layout_marginRight="@dimen/_5sdp">
-    
-     <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-       android:padding="@dimen/_6sdp"
-       android:gravity="center_vertical"
-       android:orientation="vertical">
         
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:padding="@dimen/_6sdp"
         android:gravity="center_horizontal|center_vertical"
         android:orientation="horizontal">
 
@@ -44,27 +38,4 @@
             android:id="@+id/desc"
             android:src="@drawable/ic_desc" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:indeterminate="false"
-            android:padding="@dimen/_8sdp"
-            android:focusable="false"
-            android:visibility="gone"
-            android:id="@+id/prog" />
-
-        <TextView
-            android:text="/"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/_8ssp"
-            android:visibility="gone"
-            android:id="@+id/log" />
-    </LinearLayout>
-</LinearLayout>
 </com.google.android.material.card.MaterialCardView>

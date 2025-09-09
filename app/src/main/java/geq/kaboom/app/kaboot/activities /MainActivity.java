@@ -167,19 +167,17 @@ public class MainActivity extends AppCompatActivity {
                     if (file.isDirectory() && !file.getName().startsWith(".")) {
                       HashMap<String, Object> fileData = new HashMap<>();
                       fileData.put("path", file.getAbsolutePath());
-                      if (config.getBoolean("size", false))
-                        fileData.put("size", util.getFolderSize(file));
+                      if (config.getBoolean("pkgSize", false)) {
+                        fileData.put("pkgSize", util.getFolderSize(file));
+                      }
                       tempData.add(fileData);
                     }
                   }
                 }
               } else {
                 if (!PATH.mkdir()) {
-                  Config.UI.post(
-                      () -> {
-                        util.toast("I/O error occurred!");
-                        finish();
-                      });
+                  util.toast("I/O error occurred!");
+                  finish();
                   return;
                 }
               }
@@ -302,12 +300,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-                    util.toast("Version check successful!");
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-                util.toast("Version check failed!");
             }
         });
     }).start();
