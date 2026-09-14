@@ -5,6 +5,9 @@ import geq.kaboom.app.kaboot.utils.KabUtil;
 import geq.kaboom.app.kaboot.utils.Config;
 import geq.kaboom.app.kaboot.terminal.termlib.TerminalSession;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Stream;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -69,23 +72,22 @@ public class Session {
     cmd.add("-r");
     cmd.add(pkgPath + "/rootfs");
 
-    final JSONArray variables = obj.getJSONArray("envVars");
+    final JSONObject variables = obj.getJSONObject("envVars");
     for (int i = 0; i < variables.length(); i++) {
-      if (variables.getString(i).startsWith("HOME")) {
+      if (variables.has("HOME")) {
         cmd.add("-w");
-        cmd.add(variables.getString(i).split("=")[1]);
+        cmd.add(variables.getString("HOME"));
       }
     }
     cmd.add(obj.getString("env"));
     cmd.add("-i");
-    for (int i = 0; i < variables.length(); i++) {
-      cmd.add(variables.getString(i));
-    }
+    cmd.add("XTERM=xterm-256color");
+    cmd.add("LANG=C.UTF-8");
+    variables.keys().forEachRemaining(key-> cmd.add(key+"="+variables.optString(key)));
     cmd.add("LD_PRELOAD=/.kaboot/libkabmem.so");
-
     final JSONArray commands = obj.getJSONArray("cmd");
     for (int i = 0; i < commands.length(); i++) {
-      cmd.add(commands.getString(i));
+    cmd.add(commands.getString(i));
     }
     return cmd.toArray(new String[0]);
   }

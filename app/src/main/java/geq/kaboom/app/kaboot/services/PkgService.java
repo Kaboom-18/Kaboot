@@ -78,6 +78,7 @@ public class PkgService extends Service implements TerminalSession.SessionChange
                 }
               });
     } catch (Exception e) {
+        e.printStackTrace();
     }
     return res[0];
   }
@@ -115,7 +116,7 @@ public class PkgService extends Service implements TerminalSession.SessionChange
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       NotificationChannel serviceChannel =
           new NotificationChannel(
-              CHANNEL_ID, "Package Service Channel", NotificationManager.IMPORTANCE_DEFAULT);
+              CHANNEL_ID, "Package Service Channel", NotificationManager.IMPORTANCE_LOW);
       NotificationManager manager = getSystemService(NotificationManager.class);
       if (manager != null) {
         manager.createNotificationChannel(serviceChannel);
@@ -151,6 +152,7 @@ public class PkgService extends Service implements TerminalSession.SessionChange
         .setContentIntent(bodyIntent)
         .setOngoing(true)
         .setAutoCancel(false)
+        .setSilent(true)
         .build();
   }
 

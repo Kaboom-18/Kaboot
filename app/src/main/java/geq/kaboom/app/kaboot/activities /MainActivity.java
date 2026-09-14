@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     if (config.getBoolean("version", true)) {
-      checkVersion();
+     // checkVersion();
     }
     
   }
@@ -264,68 +264,44 @@ public class MainActivity extends AppCompatActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  private void checkVersion() {
-    AlertDialog dialog = new MaterialAlertDialogBuilder(this)
-            .setTitle("Checking Version")
-            .setMessage("Please wait...")
-            .setCancelable(false)
-            .create();
-
-    dialog.show();
-
-    new Thread(() -> {
-        final String versionRaw = util.fetch(Config.VERSIONURL);
-        final String downloadUrl = util.fetch(Config.DOWNLOADURL);
-        Config.UI.post(() -> {
-            if (versionRaw == null) {
-                if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-                util.toast("Failed to check version!");
-                return;
-            }
-
-            try {
-                String currentVersion =
-                        getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-
-                if (!currentVersion.equals(versionRaw.trim())
-                        || !getPackageName().equals(Config.PACKAGE_NAME)) {
-
-                    if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-                    util.toast("Install the latest version!");
-                    
-                    if (downloadUrl != null) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl));
-                        startActivity(intent);
-                        finishAffinity();
-                    }
-                } else {
-                    if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (dialog.isShowing() && !isFinishing()) dialog.dismiss();
-            }
-        });
-    }).start();
-}
-
   public void setupAllPermissions() {
     // 1️⃣ Notification permission (Android 13+)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-      if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-          != PackageManager.PERMISSION_GRANTED) {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-            this, Manifest.permission.POST_NOTIFICATIONS)) {
-          ActivityCompat.requestPermissions(
-              this, new String[] {Manifest.permission.POST_NOTIFICATIONS}, 101);
-        } else {
-          Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-          intent.setData(Uri.parse("package:" + getPackageName()));
-          util.showPermissionDialog(
-              "This app needs notification permission to keep foreground service active. Give permission?",
-              intent);
+  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) != PackageManager.PERMISSION_GRANTED) {
+            // Your custom dialog
+            util.showPermissionDialog(
+                    "This app needs notification permission to keep the foreground service notification active. Give permission?",
+                    this
+            );
         }
-      }
     }
   }
+
+  @Override
+public void onRequestPermissionsResult(
+        int requestCode,
+        @NonNull String[] permissions,
+        @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults
+    );
+    if (requestCode == 101) {
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Intent intent = new Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        );
+        intent.setData(
+                Uri.parse("package:" + getPackageName())
+        );
+        startActivity(intent);
+    }
+}
 }

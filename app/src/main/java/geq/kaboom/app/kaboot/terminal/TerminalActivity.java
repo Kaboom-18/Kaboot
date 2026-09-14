@@ -90,6 +90,7 @@ public final class TerminalActivity extends AppCompatActivity implements Service
   @Override
   public void onServiceDisconnected(ComponentName name) {
     if (!this.isFinishing()) {
+      //Close the activity and clear recents 
       finishAndRemoveTask();
     }
   }
@@ -230,7 +231,7 @@ public final class TerminalActivity extends AppCompatActivity implements Service
   }
 
   public void onBack() {
-    finish();
+   finish();
   }
 
   public void doPaste() {

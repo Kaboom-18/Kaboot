@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -230,20 +231,29 @@ public class KabUtil {
     return Math.round(view.getResources().getDisplayMetrics().density * Config.FSCALE);
   }
     
-  public void showPermissionDialog(String message, Intent intent) {
-    new MaterialAlertDialogBuilder(context)
-        .setTitle("Permission Required")
-        .setMessage(message)
-        .setPositiveButton(
-            "Yes",
-            (dialog, which) -> {
-              context.startActivity(intent);
-            })
-        .setNegativeButton(
-            "No",
-            (dialog, which) -> {
-              dialog.dismiss();
-            })
-        .show();
+  public void showPermissionDialog(String message, Activity act) {
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Permission Required")
+                .setMessage(message)
+                .setPositiveButton(
+                        "Yes",
+                        (dialog, which) -> {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                if (ContextCompat.checkSelfPermission(
+                                                context, Manifest.permission.POST_NOTIFICATIONS)
+                                        != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(
+                                            act,
+                                            new String[] {Manifest.permission.POST_NOTIFICATIONS},
+                                            101);
+                                }
+                            }
+                        })
+                .setNegativeButton(
+                        "No",
+                        (dialog, which) -> {
+                            dialog.dismiss();
+                        })
+                .show();
   }
 }

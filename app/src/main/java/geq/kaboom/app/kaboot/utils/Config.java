@@ -24,15 +24,9 @@ public class Config {
   
   public final static int PKG_REFRESH_CODE = 1;
     
-  public final static String MAINURL = "https://raw.githubusercontent.com/Kaboom-18/Kaboot/refs/heads/main";
+  public final static String MAINURL = "https://raw.githubusercontent.com/Kaboom-18/Kaboom-Database/refs/heads/main/Kaboot";
   
   public final static String REPOURL = MAINURL+"/Packages.json";
-    
-  public final static String VERSIONURL = MAINURL+"/LatestAppVersion";
-    
-  public final static String WEBSITEURL = MAINURL+"/WebsiteUrl";
-    
-  public final static String DOWNLOADURL = MAINURL+"/DownloadLink";  
     
   public final static String PACKAGE_NAME = "geq.kaboom.app.kaboot";
   

@@ -138,24 +138,6 @@ public class SettingsActivity extends AppCompatActivity {
                         : "Failed to clear tmp!");
                 }));
 
-    settings.add(
-        new SettingItem(
-            "More About Us",
-            "Visit our website.",
-            (t, d) -> {
-              new Thread(
-                      () -> {
-                        String url = util.fetch(Config.WEBSITEURL);
-                        if (url == null) return;
-                        Config.UI.post(
-                            () -> {
-                              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                              startActivity(intent);
-                            });
-                      })
-                  .start();
-            }));
-
     list.setAdapter(new SettingsAdapter(settings));
   }
 
