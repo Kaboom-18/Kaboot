@@ -45,8 +45,15 @@ jobs:
       - name: Get version name
         id: version
         run: |
-          VERSION=$(grep 'versionName' app/build.gradle.kts | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          VERSION=$(grep -E 'versionName' app/build.gradle | head -1 | sed -E 's/.*versionName[[:space:]]+["'\'']([^"'\'']+)["'\''].*/\1/')
+
+          if [ -z "$VERSION" ]; then
+            echo "ERROR: Could not find versionName in app/build.gradle"
+            exit 1
+          fi
+
+          echo "Detected version: $VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Build Release
         run: |
