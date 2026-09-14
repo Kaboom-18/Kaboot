@@ -28,13 +28,23 @@ android {
             jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
+    
+ signingConfigs {
+    release {
+        storeFile file("release.jks")
+        storePassword System.getenv("STORE_PASSWORD")
+        keyAlias System.getenv("KEY_ALIAS")
+        keyPassword System.getenv("KEY_PASSWORD")
+    }
+}
 
     buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    release {
+        signingConfig signingConfigs.release
+        minifyEnabled true
+        shrinkResources true
     }
+  }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
