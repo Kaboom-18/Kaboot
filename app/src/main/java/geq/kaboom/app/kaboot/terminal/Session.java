@@ -81,7 +81,7 @@ public class Session {
     }
     cmd.add(obj.getString("env"));
     cmd.add("-i");
-    cmd.add("XTERM=xterm-256color");
+    cmd.add("TERM=xterm-256color");
     cmd.add("LANG=C.UTF-8");
     variables.keys().forEachRemaining(key-> cmd.add(key+"="+variables.optString(key)));
     cmd.add("LD_PRELOAD=/.kaboot/libkabmem.so");
